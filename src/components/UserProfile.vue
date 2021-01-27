@@ -9,6 +9,22 @@
         <p>Followers {{ followers }}</p>
         <!-- <button@click="followUser">Follow</button> -->
       </div>
+      <form class="user-profile__create-tweet" @submit.prevent="createNewTweet">
+        <label for="newTweet">New Tweet</label>
+        <textarea id="newTweet" rows="5" v-model="newTweetContent"></textarea>
+        <div class="user-profile__create-tweet-type">
+          <label for="newTweetType">Type</label>
+          <select id="newTweetType" v-model="selectedTweetType">
+            <option :value="option.value"
+              v-for="(option,index) in tweetTypes"
+              :key="index"
+            >
+              {{ option.name }}
+            </option>
+          </select>
+        </div>
+        <button>Tweet!</button>
+      </form>
     </div>
     <div class="user-profile__tweets-wrapper">
         <TweetItem class="user-profile__tweet"
@@ -16,6 +32,7 @@
             :key="tweet.id"
             :username="user.username"
             :tweet="tweet"
+            @favourite="toggleFavourite"
         >
             {{tweets.content}}
         </TweetItem>
@@ -35,16 +52,22 @@ export default {
       followers: 0,
       user: {
         id: 1,
-        username:'codestance',
-        firstName: 'Connie',
-        lastName: 'Stance',
-        email: 'email@email.com',
+        username:'bluebird',
+        firstName: 'Blue',
+        lastName: 'bird',
+        email: 'email@bluebird.com',
         isAdmin: true,
         tweets: [
             {id: 1, content:'Blue bird golden thoughts'},
             {id: 2, content:'Dont forget to drink water!'}
         ]
-      }
+      },
+      tweetTypes: [
+        {value:'draft', name:'Draft'},
+        {value:'instant', name:'Instant Tweet'}
+      ],
+      newTweetContent: '',
+      selectedTweetType: 'instant'
     }
   },
   watch: {
@@ -62,6 +85,17 @@ export default {
   methods: {
     followUser() {
       this.followers++
+    },
+    toggleFavourite(id){
+      console.log(`favourited tweet #${id}`)
+    },
+    createNewTweet(){
+      if(this.newTweetContent && this.selectedTweetType!=='draft'){
+        this.user.tweets.unshift({
+          id: this.user.tweets.length + 1,
+          content: this.newTweetContent
+        })
+      }
     }
   },
   mounted() {
@@ -92,5 +126,9 @@ export default {
     border-radius: 5px;
     margin-right: auto;
     padding: 5px;
+}
+.user-profile__create-tweet{
+  display: flex;
+  flex-direction: column;
 }
 </style>
