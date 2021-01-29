@@ -9,22 +9,7 @@
         <p>Followers {{ followers }}</p>
         <!-- <button@click="followUser">Follow</button> -->
       </div>
-      <form class="user-profile__create-tweet" @submit.prevent="createNewTweet">
-        <label for="newTweet">New Tweet</label>
-        <textarea id="newTweet" rows="5" v-model="newTweetContent"></textarea>
-        <div class="user-profile__create-tweet-type">
-          <label for="newTweetType">Type</label>
-          <select id="newTweetType" v-model="selectedTweetType">
-            <option :value="option.value"
-              v-for="(option,index) in tweetTypes"
-              :key="index"
-            >
-              {{ option.name }}
-            </option>
-          </select>
-        </div>
-        <button>Tweet!</button>
-      </form>
+      <CreateNewTweet></CreateNewTweet>
     </div>
     <div class="user-profile__tweets-wrapper">
         <TweetItem class="user-profile__tweet"
@@ -42,10 +27,12 @@
 
 <script>
 import TweetItem from '@/components/TweetItem.vue';
+import CreateNewTweet from '@/components/CreateNewTweet.vue'
 export default {
   name: 'userProfile',
   components: {
-      TweetItem
+      TweetItem,
+      CreateNewTweet
   },
   data() {
     return{
@@ -61,13 +48,7 @@ export default {
             {id: 1, content:'Blue bird golden thoughts'},
             {id: 2, content:'Dont forget to drink water!'}
         ]
-      },
-      tweetTypes: [
-        {value:'draft', name:'Draft'},
-        {value:'instant', name:'Instant Tweet'}
-      ],
-      newTweetContent: '',
-      selectedTweetType: 'instant'
+      }
     }
   },
   watch: {
@@ -88,14 +69,6 @@ export default {
     },
     toggleFavourite(id){
       console.log(`favourited tweet #${id}`)
-    },
-    createNewTweet(){
-      if(this.newTweetContent && this.selectedTweetType!=='draft'){
-        this.user.tweets.unshift({
-          id: this.user.tweets.length + 1,
-          content: this.newTweetContent
-        })
-      }
     }
   },
   mounted() {
@@ -104,14 +77,13 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .user-profile {
   display: grid;
   grid-template-columns: 1fr 3fr;
   width: 100%;
   padding: 50px 5%;
-}
-.user-profile__user-panel{
+  .user-profile__user-panel{
     display: flex;
     flex-direction: column;
     margin-right: 50px;
@@ -119,16 +91,13 @@ export default {
     background-color: white;
     border-radius: 5px;
     border: 1px solid #dfe3e8;
-}
-.user-profile__admin-badge{
-    background-color: red;
-    color:white;
-    border-radius: 5px;
-    margin-right: auto;
-    padding: 5px;
-}
-.user-profile__create-tweet{
-  display: flex;
-  flex-direction: column;
+  }
+  .user-profile__admin-badge{
+      background-color: red;
+      color:white;
+      border-radius: 5px;
+      margin-right: auto;
+      padding: 5px;
+  }
 }
 </style>
