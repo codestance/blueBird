@@ -24,15 +24,10 @@ export default {
           required: true
       }
   },
-  methods: {
-      favouriteTweet(id){
-          this.$emit('favourite', id)
-      }
-  }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .tweet-item {
   padding: 20px;
   background-color: white;
@@ -40,11 +35,11 @@ export default {
   border: 1px solid #dfe3eb;
   cursor: pointer;
   transition: all .25s ease;
-}
-.tweet-item:hover{
+  &:hover{
     transform: scale(1.1,1.1);
-}
-.tweet-item__user{
+    }
+  .tweet-item__user{
     font-weight: bold;
+    }
 }
 </style>

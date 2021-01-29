@@ -1,23 +1,22 @@
 <template>
   <div class="user-profile">
     <div class="user-profile__user-panel">
-      <h1 class="user-profile__username">@{{ user.username }}</h1>
-      <div class="user-profile__admin-badge" v-if="user.isAdmin">
+      <h1 class="user-profile__username">@{{ state.user.username }}</h1>
+      <div class="user-profile__admin-badge" v-if="state.user.isAdmin">
           Admin
       </div>
       <div class="user-profile__follower-count">
-        <p>Followers {{ followers }}</p>
+        <p>Followers {{ state.followers }}</p>
         <!-- <button@click="followUser">Follow</button> -->
       </div>
-      <CreateNewTweet></CreateNewTweet>
+      <CreateNewTweet @add-tweet="addTweet"></CreateNewTweet>
     </div>
     <div class="user-profile__tweets-wrapper">
         <TweetItem class="user-profile__tweet"
-            v-for="tweet in user.tweets"
+            v-for="tweet in state.user.tweets"
             :key="tweet.id"
-            :username="user.username"
+            :username="state.user.username"
             :tweet="tweet"
-            @favourite="toggleFavourite"
         >
             {{tweets.content}}
         </TweetItem>
@@ -26,6 +25,7 @@
 </template>
 
 <script>
+import {reactive} from 'vue';
 import TweetItem from '@/components/TweetItem.vue';
 import CreateNewTweet from '@/components/CreateNewTweet.vue'
 export default {
@@ -34,8 +34,8 @@ export default {
       TweetItem,
       CreateNewTweet
   },
-  data() {
-    return{
+  setup() {
+    const state = reactive ({
       followers: 0,
       user: {
         id: 1,
@@ -49,30 +49,21 @@ export default {
             {id: 2, content:'Dont forget to drink water!'}
         ]
       }
+    })
+
+    function addTweet(tweet){
+      state.user.tweets.unshift(
+        {
+          id: state.user.tweets.length + 1,
+          content: tweet
+        }
+      )
     }
-  },
-  watch: {
-    followers(newFollowerCount, oldFollowerCount){
-      if(oldFollowerCount < newFollowerCount){
-        console.log(`${this.user.username} has gained a follower`)
-      }
+
+    return {
+      state,
+      addTweet
     }
-  },
-  computed: {
-    fullName() {
-      return `${this.user.firstName} ${this.user.lastName}`
-    }
-  },
-  methods: {
-    followUser() {
-      this.followers++
-    },
-    toggleFavourite(id){
-      console.log(`favourited tweet #${id}`)
-    }
-  },
-  mounted() {
-    this.followUser()
   }
 }
 </script>

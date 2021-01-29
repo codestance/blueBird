@@ -1,27 +1,25 @@
 <template>
   <div id="app">
+    <nav>
+      <div class="navigation_logo">Birds Social App</div>
+    </nav>
     <UserProfile/>
   </div>
 </template>
 
 <script>
-import UserProfile from './components/UserProfile.vue'
+import UserProfile from './components/UserProfile'
 export default {
   name: 'App',
   components: {
     UserProfile
   }
 }
+
 </script>
 
-<style>
-*{
-  box-sizing: border-box;
-}
-body{
-  margin: 0;
-  padding: 0;
-}
+<style lang="scss">
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
