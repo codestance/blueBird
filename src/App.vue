@@ -1,19 +1,17 @@
 <template>
   <div id="app">
     <nav>
-      <div class="navigation_logo">Birds Social App</div>
+      <router-link to="/">
+        Birds Social App
+      </router-link>
     </nav>
-    <UserProfile/>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import UserProfile from './components/UserProfile'
 export default {
   name: 'App',
-  components: {
-    UserProfile
-  }
 }
 
 </script>

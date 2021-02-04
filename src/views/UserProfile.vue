@@ -2,6 +2,7 @@
   <div class="user-profile">
     <div class="user-profile__user-panel">
       <h1 class="user-profile__username">@{{ state.user.username }}</h1>
+      <h2>{{userId}}</h2>
       <div class="user-profile__admin-badge" v-if="state.user.isAdmin">
           Admin
       </div>
@@ -25,30 +26,25 @@
 </template>
 
 <script>
-import {reactive} from 'vue';
+import {reactive, computed} from 'vue';
+import {useRoute} from 'vue-router';
+import {users} from '../assets/users';
 import TweetItem from '@/components/TweetItem.vue';
 import CreateNewTweet from '@/components/CreateNewTweet.vue'
 export default {
-  name: 'userProfile',
+  name: 'UserProfile',
   components: {
       TweetItem,
       CreateNewTweet
   },
   setup() {
+    const route = useRoute();
+    const userId = computed(() => route.params.userId)
+
+
     const state = reactive ({
       followers: 0,
-      user: {
-        id: 1,
-        username:'bluebird',
-        firstName: 'Blue',
-        lastName: 'bird',
-        email: 'email@bluebird.com',
-        isAdmin: true,
-        tweets: [
-            {id: 1, content:'Blue bird golden thoughts'},
-            {id: 2, content:'Dont forget to drink water!'}
-        ]
-      }
+      user: users[userId.value -1] || users[0]
     })
 
     function addTweet(tweet){
@@ -62,7 +58,8 @@ export default {
 
     return {
       state,
-      addTweet
+      addTweet,
+      userId
     }
   }
 }
