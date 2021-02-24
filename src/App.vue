@@ -26,4 +26,9 @@ export default {
   min-height: 100vh;
   background-color: #f3f5fa;
 }
+nav{
+  display:flex;
+  padding: 1em;
+  
+}
 </style>
