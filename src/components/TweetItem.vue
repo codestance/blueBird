@@ -1,6 +1,6 @@
 <template>
   <div class="tweet-item" @click="favouriteTweet(tweet.id)">
-      <div class="user-profile__tweet">
+      <div class="tweet-item__container">
           <div class="tweet-item__user">
               @{{ username }}
           </div>
@@ -29,17 +29,20 @@ export default {
 
 <style lang="scss" scoped>
 .tweet-item {
-  padding: 20px;
-  background-color: white;
-  border-radius: 5px;
-  border: 1px solid #dfe3eb;
+  padding: 1em;
+  border-radius: .5em;
+  background: linear-gradient(94.01deg, rgba(255, 255, 255, 0.6) 0%, #FFFFFF 98.96%);
   cursor: pointer;
   transition: all .25s ease;
+  margin-bottom: .5em;
   &:hover{
-    transform: scale(1.1,1.1);
+    transform: scale(1.01);
     }
-  .tweet-item__user{
-    font-weight: bold;
+  .tweet-item__container{
+    
+    .tweet-item__user{
+      font-weight: bold;
     }
+  }
 }
 </style>

@@ -17,18 +17,22 @@ export default {
 </script>
 
 <style lang="scss">
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color:#4D3DE3;
   min-height: 100vh;
-  background-color: #f3f5fa;
+  background: linear-gradient(252.44deg, #AC80FA 0%, #F174FD 100%);
 }
 nav{
   display:flex;
   padding: 1em;
-  
+  background: linear-gradient(115.04deg, rgba(255, 255, 255, 0.48) 1.5%, rgba(255, 255, 255, 0.12) 100%);
+  a{
+    color: white;
+    text-decoration: none;
+    font-weight: bolder;
+  }
 }
 </style>

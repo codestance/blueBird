@@ -2,12 +2,12 @@
   <div class="user-profile">
     <div class="user-profile__user-panel">
       <h1 class="user-profile__username">@{{ state.user.username }}</h1>
-      <h2>{{userId}}</h2>
+      <!-- <p>{{userId}}</p> -->
       <div class="user-profile__admin-badge" v-if="state.user.isAdmin">
           Admin
       </div>
       <div class="user-profile__follower-count">
-        <p>Followers {{ state.followers }}</p>
+        <p>Followers: {{ state.followers }}</p>
         <!-- <button@click="followUser">Follow</button> -->
       </div>
       <CreateNewTweet @add-tweet="addTweet"></CreateNewTweet>
@@ -43,7 +43,7 @@ export default {
 
 
     const state = reactive ({
-      followers: 0,
+      followers: 5,
       user: users[userId.value -1] || users[0]
     })
 
@@ -69,19 +69,23 @@ export default {
 .user-profile {
   display: grid;
   grid-template-columns: 1fr 3fr;
-  width: 100%;
-  padding: 50px 5%;
+  padding: 2em;
+  margin: 3em;
+  border-radius: 1em;
+  background: linear-gradient(115.04deg, rgba(255, 255, 255, 0.48) 1.5%, rgba(255, 255, 255, 0.12) 100%);
   .user-profile__user-panel{
     display: flex;
     flex-direction: column;
-    margin-right: 50px;
-    padding: 20px;
-    background-color: white;
-    border-radius: 5px;
-    border: 1px solid #dfe3e8;
+    margin-right: 1em;
+    padding: 1em;
+    border-radius: .5em;
+    background: linear-gradient(115.04deg, rgba(255, 255, 255, 0.48) 1.5%, rgba(255, 255, 255, 0.12) 100%); 
+  }
+  .user-profile__username{
+    margin-bottom: .5em;
   }
   .user-profile__admin-badge{
-      background-color: red;
+      background-color:#F174FD;
       color:white;
       border-radius: 5px;
       margin-right: auto;

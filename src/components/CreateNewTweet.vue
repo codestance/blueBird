@@ -1,11 +1,11 @@
 <template>
-    <form class="user-profile__create-tweet"
+    <form class="create-tweet"
         @submit.prevent="createNewTweet"
         :class="{'--exceeded': newTweetCharCount > 200}"
     >
         <label for="newTweet">New Tweet {{ newTweetCharCount }}/200</label>
-        <textarea id="newTweet" rows="5" v-model="state.newTweetContent"></textarea>
-        <div class="user-profile__create-tweet-type">
+        <textarea id="newTweet" rows="6" v-model="state.newTweetContent"></textarea>
+        <div class="create-tweet-type">
           <label for="newTweetType">Type</label>
           <select id="newTweetType" v-model="state.selectedTweetType">
             <option :value="option.value"
@@ -53,17 +53,39 @@ export default{
 </script>
 
 <style lang="scss" scoped>
-.user-profile__create-tweet{
+.create-tweet{
     display: flex;
     flex-direction: column;
     &.--exceeded{
       border-color: red;
       color: red;
     }
-    .user-profile__create-tweet-type{
+    textarea{
+        border-radius: 1em;
+        border: none;
+    }
+    button{
+        padding: .5em;
+        border-radius: 1em;
+        border: none;
+        background: linear-gradient(252.44deg, #AC80FA 0%, #F174FD 100%);
+        color: white;
+        font-weight: bolder;
+    }
+    .create-tweet-type{
         margin: .5em 0;
         label{
             padding-right: 1em;
+        }
+        select{
+            padding: .5em;
+            border-radius: 1em;
+            border: none;
+            width: 100%;
+        }
+        option{
+            padding: .5em;
+            border-radius: 1em;
         }
     }
 }
