@@ -69,10 +69,13 @@ export default {
 .user-profile {
   display: grid;
   grid-template-columns: 1fr 3fr;
+  position: relative;
   padding: 2em;
   margin: 3em;
   border-radius: 1em;
   background: linear-gradient(115.04deg, rgba(255, 255, 255, 0.48) 1.5%, rgba(255, 255, 255, 0.12) 100%);
+  backdrop-filter: blur(1em);
+  z-index: 2;
   .user-profile__user-panel{
     display: flex;
     flex-direction: column;
