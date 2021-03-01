@@ -4,7 +4,7 @@
       <router-link to="/">
         Birds Social App
       </router-link>
-      <p>{{ user.username }}</p>
+      <p v-if="user">{{ user.username }}</p>
     </nav>
     <router-view/>
     <div class="circle circle1"></div>
@@ -20,7 +20,7 @@ export default {
   name: 'App',
   setup() {
     const store = useStore();
-    const user = computed(() => store.state.user);
+    const user = computed(() => store.state.User.user);
     return {
       user
     }
@@ -70,6 +70,12 @@ nav{
   background: linear-gradient(115.04deg, rgba(255, 255, 255, 0.48) 1.5%, rgba(255, 255, 255, 0.12) 100%);
   a{
     text-decoration: none;
+    &:hover, &:active{
+      color:#4D3DE3;
+    }
+  }
+  p{
+    margin: 0;
   }
 }
 </style>

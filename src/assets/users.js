@@ -18,7 +18,11 @@ export const users = [
         "lastName": "Bird",
         "email": "email@purplebird.com",
         "isAdmin": false,
-        "tweets": []
+        "tweets": [
+            {"id": 1, "content":"Hola, amigos!"},
+            {"id": 2, "content":"Es el fin de semana y estoy muy contento :)"},
+            {"id": 3, "content":"Barriga llena, corazon contento"}
+        ]
     },
     {
         "id": 3,
@@ -27,6 +31,9 @@ export const users = [
         "lastName": "Bird",
         "email": "email@greenbird.com",
         "isAdmin": false,
-        "tweets": []
+        "tweets": [
+            {"id": 1, "content":"Pils macht man nicht auf Pilzen"},
+            {"id": 2, "content":"Sind zwei Halbbrüder ein Bruder?"}
+        ]
     }
 ]

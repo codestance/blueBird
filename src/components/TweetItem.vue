@@ -38,11 +38,9 @@ export default {
   &:hover{
     transform: scale(1.01);
     }
-  .tweet-item__container{
-    
-    .tweet-item__user{
-      font-weight: bold;
-    }
+  .tweet-item__user{
+    font-weight: bold;
+    padding-bottom: .5em;
   }
 }
 </style>

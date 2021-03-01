@@ -45,6 +45,9 @@ export default {
     font-weight: bolder;
     text-decoration: none;
     margin: .5em 0;
+    &:hover, &:active{
+      color:#4D3DE3;
+    }
   }
 }
 </style>
